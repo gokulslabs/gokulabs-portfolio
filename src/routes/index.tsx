@@ -111,7 +111,7 @@ function HeroForm({ src }: { src: string }) {
     <canvas
       ref={ref}
       aria-label="Iridescent folded form"
-      className="hero-form pointer-events-none absolute left-[46%] top-[78%] h-auto w-[170%] max-w-none md:left-[64%] md:top-[46%] md:w-[96%]"
+      className="hero-form pointer-events-none absolute left-[46%] top-[78%] h-auto w-[170%] max-w-none md:left-[70%] md:top-[46%] md:w-[96%]"
     />
   );
 }
