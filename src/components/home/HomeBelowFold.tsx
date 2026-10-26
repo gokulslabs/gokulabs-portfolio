@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import heroOrb from "@/assets/hero-orb.jpg";
 import { SiteFooter } from "@/components/SiteShell";
 
 const steps = [
@@ -155,29 +154,6 @@ function HomeBelowFold() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="cv-auto relative z-10 mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-28">
-        <div className="grid items-center gap-8 md:grid-cols-12 md:gap-12">
-          <div className="md:col-span-4">
-            <div className="relative overflow-hidden rounded-3xl aspect-[4/5]">
-              <img src={heroOrb} alt="" className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-background/10" />
-              <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center">
-                <div className="font-display text-4xl tracking-tight">Gokul</div>
-                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Founder</div>
-              </div>
-            </div>
-          </div>
-          <figure className="md:col-span-8">
-            <blockquote className="font-display text-3xl leading-[1.15] tracking-tight md:text-5xl">
-              “The product should feel obvious the moment you touch it. Everything else is just how we get there.”
-            </blockquote>
-            <figcaption className="mt-6 font-display text-xl text-foreground/80">
-              Gokul <span className="text-muted-foreground">— Founder, Gokul Labs</span>
-            </figcaption>
-          </figure>
         </div>
       </section>
 
