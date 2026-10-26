@@ -172,7 +172,7 @@ function HomeBelowFold() {
           </div>
           <figure className="md:col-span-8">
             <blockquote className="font-display text-3xl leading-[1.15] tracking-tight md:text-5xl">
-              “We build as if the product has to carry a company. If it will not, we say so before a line of code is written.”
+              “The product should feel obvious the moment you touch it. Everything else is just how we get there.”
             </blockquote>
             <figcaption className="mt-6 font-display text-xl text-foreground/80">
               Gokul <span className="text-muted-foreground">— Founder, Gokul Labs</span>
