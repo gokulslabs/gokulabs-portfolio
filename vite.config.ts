@@ -3,17 +3,17 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { cloudflare } from "@cloudflare/vite-plugin";
+import { nitro } from "nitro/vite";
 
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   resolve: {
     dedupe: ["react", "react-dom", "@tanstack/react-router", "@tanstack/react-start"],
   },
   plugins: [
-    ...(command === "build" ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
     tsconfigPaths(),
     tailwindcss(),
     tanstackStart(),
+    nitro(),
     viteReact(),
   ],
-}));
+});
