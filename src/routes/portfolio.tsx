@@ -42,7 +42,7 @@ function PortfolioPage() {
       <PageHero
         eyebrow="Portfolio"
         title={<>Selected <em className="not-italic italic text-gradient">case studies.</em></>}
-        intro="Production builds across mobile, web, SaaS, e-commerce, and AI. Shipped, live, and built to be judged in the product — not in a deck."
+        intro="The writeup for each build: the problem, what shipped, the stack, and what changed. Open the live product from inside the case study."
       />
 
       {/* Filters */}
@@ -125,20 +125,13 @@ function CaseCard({ c }: { c: CaseStudy }) {
           ))}
           {c.stack.length > 4 && <span className="font-mono text-[10px] text-muted-foreground">+{c.stack.length - 4}</span>}
         </div>
-        <div className="mt-4 text-xs text-muted-foreground group-hover:text-accent transition-colors">
-          {c.url ? "Visit live site ↗" : "Read case study →"}
+        <div className="mt-4 text-xs text-muted-foreground transition-colors group-hover:text-accent">
+          Read the project →
         </div>
       </div>
     </>
   );
 
-  if (c.url) {
-    return (
-      <a href={c.url} target="_blank" rel="noopener noreferrer" className={className}>
-        {inner}
-      </a>
-    );
-  }
   return (
     <Link to="/portfolio/$slug" params={{ slug: c.slug }} className={className}>
       {inner}

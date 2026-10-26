@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useRef, type CSSProperties } from "react";
 import heroOrb from "@/assets/hero-orb.jpg";
 import { LazyOnVisible } from "@/components/LazyOnVisible";
 import { SiteHeader } from "@/components/SiteShell";
+import { caseStudies } from "@/data/portfolio";
 
 const HomeBelowFold = lazy(() => import("@/components/home/HomeBelowFold"));
 
@@ -24,15 +25,6 @@ export const Route = createFileRoute("/")({
 });
 
 const marqueeWords = ["Web platforms", "Mobile apps", "APIs", "Design systems", "AI features", "Maintenance"];
-
-const projects: { num: string; title: string; tag: string; url?: string; slug: string }[] = [
-  { num: "01", title: "Heal Laban", tag: "Ordering site · Middle Eastern sweets", url: "https://www.reserveaslot.com/heallaban", slug: "heal-laban" },
-  { num: "02", title: "Pookie Jail", tag: "Booking site · Themed café", url: "https://www.reserveaslot.com/pookie", slug: "pookie-jail" },
-  { num: "03", title: "Dentara", tag: "SaaS · Dental practice software", slug: "dentara" },
-  { num: "04", title: "Survey King", tag: "SaaS · Survey & response platform", slug: "survey-king" },
-  { num: "05", title: "FleetOS", tag: "SaaS · Fleet operations", url: "https://fleet-oss.vercel.app/", slug: "fleetos" },
-  { num: "06", title: "PDF Ninja", tag: "Web · PDF toolkit", url: "https://pdfninja-five.vercel.app/", slug: "pdf-ninja" },
-];
 
 const capabilities = [
   { k: "01", t: "Web platforms", slug: "web-development" as const, d: "Marketing sites, portals, and product surfaces in TypeScript and React. Fast on a real phone, and built so the next release is easier than the first.", hint: "From 4 weeks", icon: "web" as const },
@@ -174,45 +166,40 @@ function Index() {
       </section>
 
       <section id="work" className="cv-auto relative z-10 mx-auto max-w-[1400px] scroll-mt-28 px-5 py-20 md:px-10 md:py-32">
-        <div className="reveal mb-10 flex flex-col gap-5 md:mb-14 md:flex-row md:items-end md:justify-between">
+        <div className="reveal mb-10 flex flex-col gap-5 md:mb-16 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.25em] text-muted-foreground">Selected</div>
             <h2 className="mt-3 font-display text-4xl tracking-tight md:mt-4 md:text-7xl">
-              Open one. <em className="not-italic italic text-gradient">Then read it.</em>
+              Products you can <em className="not-italic italic text-gradient">open right now.</em>
             </h2>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+              Six builds, shown here. The portfolio explains how each one was made.
+            </p>
           </div>
-          <Link to="/portfolio" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">The full portfolio →</Link>
+          <Link to="/portfolio" className="text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">Read the portfolio →</Link>
         </div>
 
-        <ul className="border-t border-border">
-          {projects.map((p) => {
-            const row = (
-              <>
-                <span className="font-mono text-xs text-muted-foreground">{p.num}</span>
-                <span className="font-display text-3xl tracking-tight md:text-5xl">{p.title}</span>
-                <span className="text-sm text-muted-foreground md:text-base">{p.tag}</span>
-                <span className="text-sm text-foreground md:text-right">{p.url ? "Open ↗" : "Case study →"}</span>
-              </>
-            );
-            const className = "group flex flex-col gap-1 border-b border-border py-5 transition-colors hover:bg-foreground/[0.03] md:grid md:grid-cols-[3rem_1.2fr_1.4fr_auto] md:items-center md:gap-8 md:px-2 md:py-8";
-            if (p.url) {
-              return (
-                <li key={p.num}>
-                  <a href={p.url} target="_blank" rel="noopener noreferrer" className={className}>
-                    {row}
-                  </a>
-                </li>
-              );
-            }
-            return (
-              <li key={p.num}>
-                <Link to="/portfolio/$slug" params={{ slug: p.slug }} className={className}>
-                  {row}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="grid gap-5 pb-16 md:grid-cols-2 md:gap-6 md:pb-24 lg:grid-cols-3">
+          {caseStudies.map((p, i) => (
+            <Link
+              key={p.slug}
+              to="/portfolio/$slug"
+              params={{ slug: p.slug }}
+              className={`group relative block aspect-[4/5] overflow-hidden rounded-2xl glass transition-all hover:-translate-y-2 hover:shadow-glow md:rounded-3xl ${i % 2 === 1 ? "md:translate-y-12" : ""}`}
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${p.color} opacity-60 transition-opacity duration-700 group-hover:opacity-90`} />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+              <div className="absolute top-5 left-5 font-mono text-xs text-foreground/70 md:top-6 md:left-6">{p.num} / 0{caseStudies.length}</div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70 md:text-xs md:tracking-[0.25em]">{p.category} · {p.industry}</div>
+                <h3 className="mt-2 font-display text-3xl tracking-tight md:text-5xl">{p.title}</h3>
+                <div className="mt-4 inline-flex items-center gap-2 text-sm opacity-100 transition-opacity md:opacity-0 md:group-hover:opacity-100">
+                  Read the project <span>→</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section id="studio" className="cv-auto relative z-10 mx-auto max-w-[1400px] scroll-mt-28 px-5 py-16 md:px-10 md:py-28">
